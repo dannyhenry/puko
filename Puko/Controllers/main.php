@@ -14,7 +14,7 @@ class main
     {
         return array(
             'PageTitle' => 'Puko Framework',
-            'Welcome' => 'uiie',
+            'Welcome' => 'Welcome to Puko Frameowrk',
         );
     }
 }
