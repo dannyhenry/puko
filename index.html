@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <title>Puko by Velliz</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="inner">
+        <h1>Puko</h1>
+        <h2>Puko is the Micro Model-View based PHP 5 Framework for faster app development.</h2>
+        <a href="https://github.com/Velliz/puko" class="button"><small>View project on</small> GitHub</a>
+      </div>
+    </header>
+
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <h1>
+<a id="puko---v093-beta-" class="anchor" href="#puko---v093-beta-" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Puko - V0.93 Beta <a href="https://travis-ci.org/Velliz/puko"><img src="https://travis-ci.org/Velliz/puko.svg?branch=master" alt="Build Status"></a>
+</h1>
+
+<p>Puko is the Micro Model-View PHP Framework for faster PHP application Development.</p>
+
+<p><em>Puko Require</em> <strong>PHP 5.3</strong> <em>or greater</em></p>
+
+<h2>
+<a id="main-features" class="anchor" href="#main-features" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Main Features</h2>
+
+<p><strong>URL Routing</strong></p>
+
+<p>Basic URL routing follows these rules:</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-c1">localhost</span><span class="pl-k">/</span>[<span class="pl-c1">controller</span>]<span class="pl-k">/</span> <span class="pl-s"><span class="pl-pds">"</span>will search method and view with name 'main'<span class="pl-pds">"</span></span></span>
+<span class="pl-s1"><span class="pl-c1">localhost</span><span class="pl-k">/</span>[<span class="pl-c1">controller</span>]<span class="pl-k">/</span>[<span class="pl-k">function</span>]<span class="pl-k">/</span></span>
+<span class="pl-s1"><span class="pl-c1">localhost</span><span class="pl-k">/</span>[<span class="pl-c1">controller</span>]<span class="pl-k">/</span>[<span class="pl-k">function</span>]<span class="pl-k">/</span>[<span class="pl-c1">var1</span>]<span class="pl-k">/</span>[<span class="pl-c1">var2</span>]<span class="pl-k">/</span>[<span class="pl-c1">var3</span>]<span class="pl-k">/</span><span class="pl-k">...</span></span>
+<span class="pl-s1"><span class="pl-c1">localhost</span><span class="pl-k">/</span>[<span class="pl-c1">controller</span>]<span class="pl-k">/</span>[<span class="pl-c1">ID</span>]<span class="pl-k">/</span>[<span class="pl-k">function</span>]<span class="pl-k">/</span>[<span class="pl-c1">var1</span>]<span class="pl-k">/</span>[<span class="pl-c1">var2</span>]<span class="pl-k">/</span>[<span class="pl-c1">var3</span>]<span class="pl-k">/</span><span class="pl-k">...</span> <span class="pl-s"><span class="pl-pds">"</span>ID accepts [0-9] only<span class="pl-pds">"</span></span></span></pre></div>
+
+<p><strong>Data Access</strong></p>
+
+<p>Database Access can configure via <strong>Config/db.php</strong> and you can use static <strong>Data.php</strong> class to perform CRUD operations like:</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-c1">Data</span><span class="pl-k">::</span>To(<span class="pl-s"><span class="pl-pds">"</span>table name<span class="pl-pds">"</span></span>)<span class="pl-k">-&gt;</span>Save(<span class="pl-smi">$arraydata</span>); <span class="pl-s"><span class="pl-pds">"</span>insert<span class="pl-pds">"</span></span></span>
+<span class="pl-s1"><span class="pl-c1">Data</span><span class="pl-k">::</span>To(<span class="pl-s"><span class="pl-pds">"</span>table name<span class="pl-pds">"</span></span>)<span class="pl-k">-&gt;</span>Update(<span class="pl-smi">$arraywhere</span>, <span class="pl-smi">$arraydata</span>); <span class="pl-s"><span class="pl-pds">"</span>update<span class="pl-pds">"</span></span></span>
+<span class="pl-s1"><span class="pl-c1">Data</span><span class="pl-k">::</span>To(<span class="pl-s"><span class="pl-pds">"</span>table name<span class="pl-pds">"</span></span>)<span class="pl-k">-&gt;</span>Delete(<span class="pl-smi">$arraydata</span>); <span class="pl-k">-&gt;</span> <span class="pl-s"><span class="pl-pds">"</span>delete<span class="pl-pds">"</span></span></span>
+<span class="pl-s1"><span class="pl-c1">Data</span><span class="pl-k">::</span>From(<span class="pl-s"><span class="pl-pds">"</span>your query here<span class="pl-pds">"</span></span>)<span class="pl-k">-&gt;</span>FetchAll(); <span class="pl-k">-&gt;</span> <span class="pl-s"><span class="pl-pds">"</span>select<span class="pl-pds">"</span></span></span></pre></div>
+
+<p><strong>Template Engine</strong></p>
+
+<p>Puko use <strong>.html</strong> file for view. So if you want to do styling or scripting:</p>
+
+<div class="highlight highlight-text-html-basic"><pre><span class="pl-c">&lt;!--@css{bootstrap.min,datatable}--&gt;</span>
+<span class="pl-c">&lt;!--@js{jquery.min,datatable.min}--&gt;</span></pre></div>
+
+<p>And the <strong>.html</strong> file has always have their partners. <strong>.css</strong> and <strong>.js</strong> located in Assets</p>
+
+<p>For data Boilerplates, you can print data returned by Controller class like this:</p>
+
+<div class="highlight highlight-text-html-basic"><pre>{!value} "print simple single value"
+{!loop} {!value} {/loop} "print value on array"
+{!!condition} {/condition} "blocked condition"</pre></div>
+
+<h2>
+<a id="about" class="anchor" href="#about" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>About</h2>
+
+<p>Crafted with &lt;3 from <strong>Bandung</strong>, Indonesia.</p>
+
+<p>If you find bugs error or you want contribute to this project. </p>
+
+<p>just send me email to : <a href="mailto:diditvelliz@gmail.com">diditvelliz@gmail.com</a> </p>
+
+<p>Thanks :)</p>
+
+<h2>
+<a id="license" class="anchor" href="#license" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>License</h2>
+
+<p>Copyright <strong>2016 - Didit Velliz</strong></p>
+
+<p>Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at</p>
+
+<pre><code>http://www.apache.org/licenses/LICENSE-2.0
+</code></pre>
+
+<p>Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.</p>
+        </section>
+
+        <aside id="sidebar">
+          <a href="https://github.com/Velliz/puko/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/Velliz/puko/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
+
+          <p class="repo-owner"><a href="https://github.com/Velliz/puko"></a> is maintained by <a href="https://github.com/Velliz">Velliz</a>.</p>
+
+          <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
+    </div>
+
+  
+  </body>
+</html>
