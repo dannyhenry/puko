@@ -92,6 +92,9 @@ class HtmlParser extends AbstractParser
         if (!isset($this->values)) {
             $this->ReturnEmptyRender();
         }
+
+        $this->masterFile = str_replace('{CONTENT}', $this->stringFile, $this->masterFile);
+
         foreach ($this->values as $key => $value) {
             foreach ($this->valueRules as $head => $tail) {
                 $tagReplace = $head . $key . $tail;
@@ -176,7 +179,6 @@ class HtmlParser extends AbstractParser
             }
         }
 
-        $this->masterFile = str_replace('{CONTENT}', $this->stringFile, $this->masterFile);
         return $this->masterFile;
     }
 
@@ -213,40 +215,62 @@ class HtmlParser extends AbstractParser
         return substr($string, $ini, $len);
     }
 
-    public function getStyleProperty()
+    public function getStyleProperty($file, $master = false)
     {
-        $keys = $this->getStringBetween($this->masterFile, '@css{', '}');
-        $this->masterFile = str_replace('@css{' . $keys . '}', '@css{}', $this->masterFile);
+        $keys = $this->getStringBetween($file, '@css{', '}');
+        if($master)
+            $this->masterFile = str_replace('@css{' . $keys . '}', '@css{}', $file);
+        else
+            $this->stringFile = str_replace('@css{' . $keys . '}', '@css{}', $file);
         return explode(',', $keys);
     }
 
-    public function getScriptProperty()
+    public function getScriptProperty($file, $master = false)
     {
-        $keys = $this->getStringBetween($this->masterFile, '@js{', '}');
-        $this->masterFile = str_replace('@js{' . $keys . '}', '@js{}', $this->masterFile);
+        $keys = $this->getStringBetween($file, '@js{', '}');
+        if($master)
+            $this->masterFile = str_replace('@js{' . $keys . '}', '@js{}', $file);
+        else
+            $this->stringFile = str_replace('@js{' . $keys . '}', '@js{}', $file);
         return explode(',', $keys);
     }
 
     public function ScriptRender($controllerName, $functionName)
     {
-        $arrayScript = $this->getScriptProperty();
+        $arrayScript = $this->getScriptProperty($this->masterFile, true);
         $htmlScripts = '';
         foreach ($arrayScript as $key => $val) {
             $htmlScripts .= "<script type='text/javascript' src='" . ROOT . "Extensions/js/" . $val . ".js'></script>\n";
         }
         $htmlScripts .= "<script type='text/javascript' src='" . ROOT . "Assets/js/" . $controllerName . "/" . $functionName . ".js'></script>\n";
         $this->masterFile = str_replace('<!--@js{}-->', $htmlScripts, $this->masterFile);
+
+        $arrayScript = $this->getScriptProperty($this->stringFile);
+        $htmlScripts = '';
+        foreach ($arrayScript as $key => $val) {
+            $htmlScripts .= "<script type='text/javascript' src='" . ROOT . "Extensions/js/" . $val . ".js'></script>\n";
+        }
+        $htmlScripts .= "<script type='text/javascript' src='" . ROOT . "Assets/js/" . $controllerName . "/" . $functionName . ".js'></script>\n";
+        $this->stringFile = str_replace('<!--@js{}-->', $htmlScripts, $this->stringFile);
     }
 
     public function StyleRender($controllerName, $functionName)
     {
-        $arrayStyle = $this->getStyleProperty();
+        $arrayStyle = $this->getStyleProperty($this->masterFile, true);
         $htmlStylesheet = '';
         foreach ($arrayStyle as $key => $val) {
             $htmlStylesheet .= "<link rel='stylesheet' href='" . ROOT . "Extensions/css/" . $val . ".css'>\n";
         }
         $htmlStylesheet .= "<link rel='stylesheet' href='" . ROOT . "Assets/css/" . $controllerName . "/" . $functionName . ".css'>\n";
         $this->masterFile = str_replace('<!--@css{}-->', $htmlStylesheet, $this->masterFile);
+
+        $arrayStyle = $this->getStyleProperty($this->stringFile);
+        $htmlStylesheet = '';
+        foreach ($arrayStyle as $key => $val) {
+            $htmlStylesheet .= "<link rel='stylesheet' href='" . ROOT . "Extensions/css/" . $val . ".css'>\n";
+        }
+        $htmlStylesheet .= "<link rel='stylesheet' href='" . ROOT . "Assets/css/" . $controllerName . "/" . $functionName . ".css'>\n";
+        $this->stringFile = str_replace('<!--@css{}-->', $htmlStylesheet, $this->stringFile);
     }
 
     public function ReturnEmptyRender()
