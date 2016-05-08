@@ -5,4 +5,4 @@ define('FILE', dirname(__FILE__));
 include('Puko/Core/Puko.php');
 use Puko\Core\Puko;
 
-Puko::Init(DEVELOPMENT)->Start();
+Puko::Init(PRODUCTION)->Start();
