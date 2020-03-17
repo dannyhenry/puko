@@ -1,71 +1,53 @@
-# Puko - V0.93 Beta [![Build Status](https://travis-ci.org/Velliz/puko.svg?branch=master)](https://travis-ci.org/Velliz/puko)
+<img align="left" src="https://4.bp.blogspot.com/-5-ZTEcgqYU4/Wy_GAT3k3qI/AAAAAAAAFhw/X0n1kq0QrckmTf009xWUU_kseNZJWQScgCLcBGAs/s1600/puko-material-50.png">
 
-Puko is the Micro Model-View PHP Framework for faster PHP application Development.
+# Puko Framework [Starter Kit]
 
-*Puko Require* **PHP 5.3** *or greater*
+Puko Framework is MVC PHP Framework for quick PHP Application Development.
 
-checkout the lastest release [HERE](https://github.com/Velliz/puko/releases) 
+[![Build Status](https://travis-ci.org/Velliz/pukoframework.svg?branch=master)](https://travis-ci.org/Velliz/puko)
+[![StyleCI Status](https://styleci.io/repos/65143717/shield)](https://styleci.io/repos/65143717/shield)
+[![Latest Stable Version](https://poser.pugx.org/velliz/puko/v/stable)](https://packagist.org/packages/velliz/puko)
+[![Total Downloads](https://poser.pugx.org/velliz/puko/downloads)](https://packagist.org/packages/velliz/puko)
 
-## Main Features
+**This is [Starter Kit] for building apps using Puko Framework**
 
-**URL Routing**
+## Requirement
 
-Basic URL routing follows these rules:
-```PHP
-localhost/[controller]/ "will search method and view with name 'main'"
-localhost/[controller]/[function]/
-localhost/[controller]/[function]/[var1]/[var2]/[var3]/...
-localhost/[controller]/[ID]/[function]/[var1]/[var2]/[var3]/... "ID accepts [0-9] only"
-```
-**Data Access**
+* Puko Require **PHP 7.0** or greater
+* Composer
 
-Database Access can configure via **Config/db.php** and you can use static **Data.php** class to perform CRUD operations like:
-```PHP
-Data::To("table name")->Save($arraydata);
-Data::To("table name")->Update($arraywhere, $arraydata);
-Data::To("table name")->Delete($arraydata);
-Data::From("your query here")->FetchAll();
-```
-**Template Engine**
+## Feature
 
-Puko use **.html** file for view. So if you want to do styling or scripting:
-```
-<!--@css{bootstrap.min,datatable}-->
-<!--@js{jquery.min,datatable.min}-->
-```
-And the **.html** file has always have their partners. **.css** and **.js** located in Assets
+* Authentication
+* Build-in Template Engine (PTE)
+* Document Command (PDC)
+* Exception Handling (PEH)
+* Fast Data Access *using PDO* (PDA)
+* Command Line Interface (PCLI) for code scaffolding
+* Simple routes
+* View and Service build in
+* Fast and Light
 
-For data Boilerplates, you can print data returned by Controller class like this:
-```
-{!value} "print simple single value"
-{!loop} {!value} {/loop} "print value on array"
-{!!condition} {/condition} "blocked condition"
+## Installation
+
+Want to try? Just hit on composer:
+```php
+composer create-project velliz/puko appname
 ```
 
-And many more you can find in the [DOCS / WIKI](https://github.com/Velliz/puko/wiki/Welcome-to-Puko-Docs)
+Setup your database:
+```php
+php puko setup db
+```
+
+See starter kit for puko framework in [here](https://github.com/Velliz/puko) 
+and see usage and sample in [documentation](https://velliz.github.io/pudo)
+
+If you find bugs, error or you want contribute to this project. 
+Don't hesitate to post an issue and pull request to make puko framework better.
 
 ## About
 
-Crafted with <3 from **Bandung**, Indonesia.
+Crafted with <3 from Bandung, Indonesia.
 
-If you find bugs error or you want contribute to this project. 
-
-just send me email to : diditvelliz@gmail.com 
-
-Thanks :)
-
-## License
-
-Copyright **2016 - Didit Velliz**
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
+Copyright 2016 - present by Didit Velliz
